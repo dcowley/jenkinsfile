@@ -1,13 +1,9 @@
 pipeline {
-  agent any
+  agent {
+    label 'mac'
+  }
   stages {
-    stage('Source Code Checkout') {
-      steps {
-        sh 'echo "Checkout source code"'
-      }
-    }
-
-    stage('Build SIT') {
+    stage('Build') {
       parallel {
         stage('Build SIT') {
           steps {
@@ -24,7 +20,7 @@ pipeline {
       }
     }
 
-    stage('Deploy SIT to App Center') {
+    stage('Deploy') {
       parallel {
         stage('Deploy SIT to App Center') {
           steps {
